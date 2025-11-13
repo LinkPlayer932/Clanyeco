@@ -1,67 +1,60 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Outfit } from "next/font/google";
-import { Phone, Search } from "lucide-react";
+import { Phone, Search, Menu, X } from "lucide-react";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <nav className="container mx-auto p-4 sm:p-6 md:p-8 w-full bg-white rounded-full">
-      <div className=" flex flex-col md:flex-row md:justify-between md:items-center gap-4 md:gap-6">
+    <nav className="container mx-auto p-4 sm:p-6 md:p-8 w-full bg-white rounded-full shadow-sm">
+      <div className="flex justify-between items-center">
         {/* ===== Logo ===== */}
-        <div className="flex justify-center md:justify-start">
-          <img src="/logo.svg" className="w-32 md:w-36" alt="Logo" />
+        <div className="flex items-center">
+          <img src="/logo.svg" className="w-28 md:w-36" alt="Logo" />
         </div>
 
-        {/* ===== Nav Links ===== */}
-        <div
-          className={`${outfit.className} flex flex-wrap justify-center md:justify-center gap-4 sm:gap-6 md:gap-10 font-semibold text-sm md:text-base`}
+        {/* ===== Hamburger for Mobile ===== */}
+        <button
+          className="md:hidden flex items-center justify-center p-2 rounded-full hover:bg-gray-100 transition"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle Menu"
         >
-          <a
-            href="/"
-            className="hover:underline hover:text-[#3CA100] transition"
-          >
+          {menuOpen ? <X size={26} /> : <Menu size={26} />}
+        </button>
+
+        {/* ===== Nav Links (Desktop) ===== */}
+        <div
+          className={`${outfit.className} hidden md:flex flex-wrap justify-center items-center gap-8 font-semibold text-sm lg:text-base`}
+        >
+          <a href="/" className="hover:text-[#3CA100] transition">
             Home
           </a>
-          <a
-            href="/services"
-            className="hover:underline hover:text-[#3CA100] transition"
-          >
+          <a href="/services" className="hover:text-[#3CA100] transition">
             Services
           </a>
-          <a
-            href="/service-area"
-            className="hover:underline hover:text-[#3CA100] transition"
-          >
+          <a href="/service-area" className="hover:text-[#3CA100] transition">
             Service Area
           </a>
-          <a
-            href="/about"
-            className="hover:underline hover:text-[#3CA100] transition"
-          >
+          <a href="/about" className="hover:text-[#3CA100] transition">
             About
           </a>
-          <a
-            href="/contact"
-            className="hover:underline hover:text-[#3CA100] transition"
-          >
+          <a href="/contact" className="hover:text-[#3CA100] transition">
             Contact
           </a>
-          <a
-            href="/blog"
-            className="hover:underline hover:text-[#3CA100] transition"
-          >
+          <a href="/blog" className="hover:text-[#3CA100] transition">
             Blog
           </a>
         </div>
 
-        {/* ===== Contact & Buttons ===== */}
-        <div className="flex flex-col sm:flex-row justify-center md:justify-end items-center gap-3 sm:gap-4">
+        {/* ===== Contact & Quote Button (Desktop) ===== */}
+        <div className="hidden md:flex items-center gap-4">
           {/* Phone */}
           <a
             href="tel:1805678990"
-            className={`${outfit.className} flex items-center gap-2 border border-[#c8c8c8da] rounded-full px-3 py-2 font-semibold text-sm md:text-base`}
+            className={`${outfit.className} flex items-center gap-2 border border-[#c8c8c8da] rounded-full px-3 py-2 font-semibold text-sm`}
           >
             <Phone
               size={20}
@@ -72,22 +65,58 @@ const Navbar = () => {
 
           {/* Search */}
           <a
-            href="search"
-            className="flex items-center gap-2 md:px-3 md:py-2 font-semibold"
+            href="/search"
+            className="flex items-center justify-center p-2 hover:text-[#3CA100] transition"
           >
-            <Search size={22} className="p-1 w-8 h-8" />
+            <Search size={22} />
           </a>
 
           {/* Button */}
-          <div className="bg-[#f2d701] rounded-full px-6 py-2 md:py-3">
-            <button
-              className={`${outfit.className} w-full md:w-auto text-sm md:text-base`}
-            >
-              Free Quote
-            </button>
-          </div>
+          <button
+            className={`${outfit.className} bg-[#f2d701] rounded-full px-6 py-2 font-medium hover:scale-105 transition`}
+          >
+            Free Quote
+          </button>
         </div>
       </div>
+
+      {/* ===== Mobile Menu ===== */}
+      {menuOpen && (
+        <div className="md:hidden mt-4 bg-[#f9faf7] rounded-3xl p-6 shadow-inner flex flex-col items-center gap-5 transition-all duration-300">
+          <a href="/" className="hover:text-[#3CA100] transition">
+            Home
+          </a>
+          <a href="/services" className="hover:text-[#3CA100] transition">
+            Services
+          </a>
+          <a href="/service-area" className="hover:text-[#3CA100] transition">
+            Service Area
+          </a>
+          <a href="/about" className="hover:text-[#3CA100] transition">
+            About
+          </a>
+          <a href="/contact" className="hover:text-[#3CA100] transition">
+            Contact
+          </a>
+          <a href="/blog" className="hover:text-[#3CA100] transition">
+            Blog
+          </a>
+
+          {/* Mobile Contact */}
+          <a
+            href="tel:1805678990"
+            className="flex items-center gap-2 border border-gray-300 rounded-full px-4 py-2 text-sm font-semibold"
+          >
+            <Phone size={18} className="text-[#3CA100]" />
+            <span>+1 (180) 567-8990</span>
+          </a>
+
+          {/* Mobile Button */}
+          <button className="bg-[#f2d701] w-full rounded-full py-2 font-medium hover:scale-105 transition">
+            Free Quote
+          </button>
+        </div>
+      )}
     </nav>
   );
 };
