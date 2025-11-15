@@ -128,11 +128,8 @@ const HeroSection = () => {
             >
               Free Quote
             </button>
-            <button
-              className={`${outfit.className} border border-green-600 text-green-700 px-8 py-3 rounded-full text-sm hover:bg-green-50 transition-all`}
-            >
-              Our Services
-            </button>
+            <a className={`${outfit.className} border border-green-600 text-green-700 px-8 py-3 rounded-full text-sm hover:bg-green-50 transition-all`} href="/services">Our Services</a>
+
           </div>
 
           {/* ===== Features ===== */}

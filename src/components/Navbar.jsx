@@ -13,6 +13,8 @@ const Navbar = () => {
       <div className="flex justify-between items-center">
         {/* ===== Logo ===== */}
         <div className="flex items-center">
+          <a href="/"></a>
+
           <img src="/logo.svg" className="w-28 md:w-36" alt="Logo" />
         </div>
 
@@ -60,9 +62,8 @@ const Navbar = () => {
               size={20}
               className="bg-[#f2d701] rounded-full p-1.5 w-7 h-7"
             />
-            <span>+1 (180) 567-8990</span>
+            <span className="text-ellipsisn">+1 (180) 567-8990</span>
           </a>
-
           {/* Search */}
           <a
             href="/search"
@@ -70,7 +71,6 @@ const Navbar = () => {
           >
             <Search size={22} />
           </a>
-
           {/* Button */}
           <button
             className={`${outfit.className} bg-[#f2d701] rounded-full px-6 py-2 font-medium hover:scale-105 transition`}
