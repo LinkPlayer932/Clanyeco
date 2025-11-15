@@ -37,7 +37,7 @@ const Navbar = () => {
           <a href="/services" className="hover:text-[#3CA100] transition">
             Services
           </a>
-          <a href="/service-area" className="hover:text-[#3CA100] transition">
+          <a href="/servicearea" className="hover:text-[#3CA100] transition">
             Service Area
           </a>
           <a href="/about" className="hover:text-[#3CA100] transition">
@@ -72,11 +72,12 @@ const Navbar = () => {
             <Search size={22} />
           </a>
           {/* Button */}
-          <button
+          <a
+            href="/servicearea"
             className={`${outfit.className} bg-[#f2d701] rounded-full px-6 py-2 font-medium hover:scale-105 transition`}
           >
             Free Quote
-          </button>
+          </a>
         </div>
       </div>
 
